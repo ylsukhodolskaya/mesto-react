@@ -6,6 +6,8 @@ import Header from './Header.js';
 import Footer from './Footer.js';
 import Main from './Main.js';
 import PopupWithForm from './PopupWithForm.js';
+import PopupWithImage from './PopupWithImage.js';
+
 
 
 
@@ -13,6 +15,9 @@ function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
+  const [isPreviewCardPopupOpen, setIsPreviewCardPopupOpen] = React.useState(false);
+  const [selectedCard, setSelectedCard] = React.useState({});
+
 
   const handleEditProfileClick = () => {
     setIsEditProfilePopupOpen(true);
@@ -26,10 +31,17 @@ function App() {
     setIsEditAvatarPopupOpen(true);
   }
 
+  const handleCardClick = (card) => {
+    setIsPreviewCardPopupOpen(true);
+    setSelectedCard(card)
+  }
+
   const closeAllPopups = () => {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
+    setIsPreviewCardPopupOpen(false);
+    setSelectedCard({});
   };
 
   return (
@@ -39,6 +51,7 @@ function App() {
         onEditProfile={handleEditProfileClick}
         onAddPlace={handleAddPlaceClick}
         onEditAvatar={handleEditAvatarClick}
+        onCardClick={handleCardClick}
       />
       <Footer />
 
@@ -139,30 +152,12 @@ function App() {
         }
       />
 
+      <PopupWithImage
+        card={selectedCard}
+        isOpen={isPreviewCardPopupOpen}
+        onClose={closeAllPopups}
+      />
 
-      <div className="popup popup-delete-card">
-        <div className="popup__container">
-          <button className="button popup__close-button" />
-          <form
-            className="popup__form popup__form-delete"
-            id="delete-form"
-            name="delete"
-            noValidate=""
-          >
-            <h2 className="popup__title">Вы уверены?</h2>
-            <button
-              className="button popup__save-button popup__save-button-delete"
-              type="submit"
-            >
-              Да
-            </button>
-          </form>
-        </div>
-      </div>
-
-
-      
-      <template id="template-element" />
     </>
 
   );
