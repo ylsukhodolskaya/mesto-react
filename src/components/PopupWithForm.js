@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const PopupWithForm = (props) => {
@@ -18,6 +17,4 @@ const PopupWithForm = (props) => {
   )
 }
 
-export default PopupWithForm
-
-
+export default PopupWithForm;

@@ -1,19 +1,14 @@
 import avatar from '../images/Photo-content/Avatar.jpg';
-import React from 'react';
+import { useEffect, useState } from 'react';
 import { api } from '../utils/Api.js';
 import Card from './Card.js';
-
-
-
-
 
 function Main(props) {
 
   const { onEditProfile, onAddPlace, onEditAvatar, onCardClick } = props;
 
-
-  const [currentUser, setCurrentUser] = React.useState({ name: 'Юлия', about: 'Fox', avatar: avatar });
-  const [cards, setCards] = React.useState([]);
+  const [currentUser, setCurrentUser] = useState({ name: 'Юлия', about: 'Fox', avatar: avatar });
+  const [cards, setCards] = useState([]);
 
   const cardComponents = cards.map((card) => (
     <Card
@@ -23,8 +18,7 @@ function Main(props) {
     />
   ));
 
-
-  React.useEffect(() => {
+  useEffect(() => {
     Promise.all([api.getInitialCards(), api.getUserInfo()])
       .then(([initialCards, userData]) => {
         setCurrentUser(userData);

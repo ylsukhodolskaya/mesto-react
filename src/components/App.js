@@ -1,4 +1,4 @@
-import React from 'react';
+import {useState} from 'react';
 import '../App.css';
 import Header from './Header.js';
 import Footer from './Footer.js';
@@ -6,16 +6,12 @@ import Main from './Main.js';
 import PopupWithForm from './PopupWithForm.js';
 import ImagePopup from './ImagePopup.js';
 
-
-
-
 function App() {
-  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
-  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
-  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
-  const [isPreviewCardPopupOpen, setIsPreviewCardPopupOpen] = React.useState(false);
-  const [selectedCard, setSelectedCard] = React.useState({});
-
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+  const [isPreviewCardPopupOpen, setIsPreviewCardPopupOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState({});
 
   const handleEditProfileClick = () => {
     setIsEditProfilePopupOpen(true);
@@ -59,36 +55,33 @@ function App() {
         textsubmit="Сохранить"
         isOpen={isEditProfilePopupOpen}
         onClose={closeAllPopups}
-        children={
-          <>
-            <label className="popup__label">
-              <input
-                type="text"
-                className="popup__input popup__input_type_name"
-                name="name"
-                id="input-name"
-                placeholder="Имя"
-                minLength={2}
-                maxLength={40}
-                required=""
-              />
-              <span className="input-name-error" />
-            </label>
-            <label className="popup__label">
-              <input
-                type="text"
-                className="popup__input popup__input_type_description"
-                name="about"
-                id="input-about"
-                placeholder="О себе"
-                minLength={2}
-                maxLength={200}
-              />
-              <span className="input-about-error" />
-            </label>
-          </>
-        }
-      />
+      >
+        <label className="popup__label">
+          <input
+            type="text"
+            className="popup__input popup__input_type_name"
+            name="name"
+            id="input-name"
+            placeholder="Имя"
+            minLength={2}
+            maxLength={40}
+            required=""
+          />
+          <span className="input-name-error" />
+        </label>
+        <label className="popup__label">
+          <input
+            type="text"
+            className="popup__input popup__input_type_description"
+            name="about"
+            id="input-about"
+            placeholder="О себе"
+            minLength={2}
+            maxLength={200}
+          />
+          <span className="input-about-error" />
+        </label>
+      </PopupWithForm>
 
       <PopupWithForm
         name="place"
@@ -96,36 +89,32 @@ function App() {
         textsubmit="Сохранить"
         isOpen={isAddPlacePopupOpen}
         onClose={closeAllPopups}
-        children={
-          <>
-            <label className="popup__label">
-              <input
-                type="text"
-                className="popup__input popup__input_type_title"
-                name="name"
-                placeholder="Название"
-                minLength={2}
-                maxLength={30}
-                id="input-place-name"
-                required=""
-              />
-              <span className="input-place-name-error" />
-            </label>
-            <label className="popup__label">
-              <input
-                type="url"
-                className="popup__input popup__input_type_link"
-                name="link"
-                id="input-link"
-                placeholder="Ссылка на картинку"
-                required=""
-              />
-              <span className="input-link-error" />
-            </label>
-          </>
-        }
-      />
-
+      >
+        <label className="popup__label">
+          <input
+            type="text"
+            className="popup__input popup__input_type_title"
+            name="name"
+            placeholder="Название"
+            minLength={2}
+            maxLength={30}
+            id="input-place-name"
+            required=""
+          />
+          <span className="input-place-name-error" />
+        </label>
+        <label className="popup__label">
+          <input
+            type="url"
+            className="popup__input popup__input_type_link"
+            name="link"
+            id="input-link"
+            placeholder="Ссылка на картинку"
+            required=""
+          />
+          <span className="input-link-error" />
+        </label>
+      </PopupWithForm>
 
       <PopupWithForm
         name="avatar"
@@ -133,31 +122,26 @@ function App() {
         textsubmit="Сохранить"
         isOpen={isEditAvatarPopupOpen}
         onClose={closeAllPopups}
-        children={
-          <>
-            <label className="popup__label">
-              <input
-                type="url"
-                className="popup__input popup__input_type_link"
-                name="avatar"
-                id="input-avatar"
-                placeholder="Ссылка на картинку"
-                required=""
-              />
-              <span className="input-avatar-error" />
-            </label>
-          </>
-        }
-      />
+      >
+        <label className="popup__label">
+          <input
+            type="url"
+            className="popup__input popup__input_type_link"
+            name="avatar"
+            id="input-avatar"
+            placeholder="Ссылка на картинку"
+            required=""
+          />
+          <span className="input-avatar-error" />
+        </label>
+      </PopupWithForm>
 
       <ImagePopup
         card={selectedCard}
         isOpen={isPreviewCardPopupOpen}
         onClose={closeAllPopups}
       />
-
     </>
-
   );
 }
 

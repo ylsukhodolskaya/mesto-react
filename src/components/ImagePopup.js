@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 const ImagePopup = (props) => {
   const { card, isOpen, onClose } = props;
   return (
