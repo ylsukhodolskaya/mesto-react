@@ -1,6 +1,5 @@
 
 import React from 'react';
-// import cn from 'classnames';
 
 const PopupWithForm = (props) => {
   const { name, title, children, textsubmit, isOpen, onClose } = props;
