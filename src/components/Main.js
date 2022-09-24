@@ -1,33 +1,27 @@
-import avatar from '../images/Photo-content/Avatar.jpg';
-import { useEffect, useState } from 'react';
+// import avatar from '../images/Photo-content/Avatar.jpg';
+import { useEffect, useState, useContext } from 'react';
 import { api } from '../utils/Api.js';
 import Card from './Card.js';
+import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
+
 
 function Main(props) {
 
-  const { onEditProfile, onAddPlace, onEditAvatar, onCardClick } = props;
+  const { onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardDelete, onCardLike, cards } = props;
 
-  const [currentUser, setCurrentUser] = useState({ name: 'Юлия', about: 'Fox', avatar: avatar });
-  const [cards, setCards] = useState([]);
+  // Подписываемся на контекст CurrentUserContext
+  const currentUser = useContext(CurrentUserContext);
+
 
   const cardComponents = cards.map((card) => (
     <Card
       key={card._id}
       card={card}
       onClick={onCardClick}
+      onCardLike={onCardLike}
+      onCardDelete={onCardDelete}
     />
   ));
-
-  useEffect(() => {
-    Promise.all([api.getInitialCards(), api.getUserInfo()])
-      .then(([initialCards, userData]) => {
-        setCurrentUser(userData);
-        setCards(initialCards);
-      })
-      .catch((err) => {
-        console.log('//////Ошибка Promise.all//////', err);
-      });
-  }, [])
 
   return (
     <main className="content">
@@ -61,7 +55,7 @@ function Main(props) {
         />
       </section>
 
-      <section className="elements" aria-label="Карточки">
+      <section className="elements">
         <ul className="elements-list">{cardComponents}</ul>
       </section>
 

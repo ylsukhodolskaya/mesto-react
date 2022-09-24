@@ -70,21 +70,37 @@ class Api {
 
 
   //=============================================
-  // Ставим лайк
-  setLike(cardId) {
+  // // Ставим лайк
+  // setLike(cardId) {
+  //   return fetch(`${this._url}/cards/likes/${cardId}`, {
+  //     method: 'PUT',
+  //     headers: this._headers
+  //   }).then(res => this._parseResponse(res));
+  // }
+
+  // // Удаляем лайк
+  // deleteLike(cardId) {
+  //   return fetch(`${this._url}/cards/likes/${cardId}`, {
+  //     method: 'DELETE',
+  //     headers: this._headers
+  //   }).then(res => this._parseResponse(res));
+  // }
+
+  // Меняем статус лайка
+  changeLikeCardStatus (cardId, isLiked) {
+  if(isLiked) {
     return fetch(`${this._url}/cards/likes/${cardId}`, {
       method: 'PUT',
       headers: this._headers
     }).then(res => this._parseResponse(res));
-  }
-
-  // Удаляем лайк
-  deleteLike(cardId) {
+  } else {
     return fetch(`${this._url}/cards/likes/${cardId}`, {
       method: 'DELETE',
       headers: this._headers
     }).then(res => this._parseResponse(res));
   }
+}
+   
 
   //===========================================
 
