@@ -2,8 +2,7 @@ import React from 'react';
 import PopupWithForm from './PopupWithForm';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
-export default function EditAvatarPopup(props) {
-  const { isOpen, onClose, onUpdateAvatar } = props;
+export default function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
 
   // Подписываемся на контекст CurrentUserContext
   const currentUser = React.useContext(CurrentUserContext);
@@ -17,6 +16,10 @@ export default function EditAvatarPopup(props) {
       avatar: avatarRef.current.value,
     });
   }
+
+  React.useEffect(() => {
+    avatarRef.current.value = ''
+  }, [isOpen]);
 
   return (
     <PopupWithForm
@@ -41,5 +44,4 @@ export default function EditAvatarPopup(props) {
       </label>
     </PopupWithForm>
   )
-
 }

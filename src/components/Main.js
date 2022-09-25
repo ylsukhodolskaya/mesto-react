@@ -4,14 +4,10 @@ import { api } from '../utils/Api.js';
 import Card from './Card.js';
 import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 
-
-function Main(props) {
-
-  const { onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardDelete, onCardLike, cards } = props;
+function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardDelete, onCardLike, cards }) {
 
   // Подписываемся на контекст CurrentUserContext
   const currentUser = useContext(CurrentUserContext);
-
 
   const cardComponents = cards.map((card) => (
     <Card

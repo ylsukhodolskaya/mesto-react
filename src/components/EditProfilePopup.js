@@ -2,8 +2,7 @@ import React from 'react';
 import PopupWithForm from './PopupWithForm';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
-function EditProfilePopup(props) {
-  const { isOpen, onClose, onUpdateUser } = props
+function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
 
   // Подписываемся на контекст CurrentUserContext
   const currentUser = React.useContext(CurrentUserContext);

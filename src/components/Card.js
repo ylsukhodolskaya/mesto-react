@@ -1,8 +1,7 @@
 import React from 'react';
 import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 
-function Card(props) {
-  const { card, onClick, onCardLike, onCardDelete } = props;
+function Card({ card, onClick, onCardLike, onCardDelete }) {
   // Подписываемся на контекст CurrentUserContext
   const currentUser = React.useContext(CurrentUserContext);
 

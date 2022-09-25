@@ -12,9 +12,6 @@ import EditProfilePopup from './EditProfilePopup.js';
 import EditAvatarPopup from './EditAvatarPopup.js';
 import AddPlacePopup from './AddPlacePopup.js';
 
-
-
-
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
@@ -24,8 +21,6 @@ function App() {
   // Переменная состояния пользователя
   const [currentUser, setCurrentUser] = useState(defaultUserInfo);
   const [cards, setCards] = useState([]);
-
-
 
   //переменная состояния currentUser и эффект при монтировании, который будет вызывать api.getUserInfo и обновлять стейт-переменную из полученного значения
   useEffect(() => {
@@ -81,6 +76,9 @@ function App() {
     api.changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
         setCards((serverCards) => serverCards.map((c) => c._id === card._id ? newCard : c));
+      })
+      .catch((err) => {
+        console.log(err)
       });
   }
 
@@ -89,6 +87,9 @@ function App() {
     api.deleteCard(card._id)
       .then(() => {
         setCards((serverCards) => serverCards.filter((c) => c._id !== card._id))
+      })
+      .catch((err) => {
+        console.log(err)
       })
   }
 
@@ -160,8 +161,6 @@ function App() {
           onClose={closeAllPopups}
           onAddPlace={handleAddPlaceSubmit}
         />
-
-
 
         <ImagePopup
           card={selectedCard}
